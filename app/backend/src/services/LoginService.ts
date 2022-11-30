@@ -34,9 +34,8 @@ class LoginService {
   }
 
   private generateToken(user: IUser) {
-    const payload = { email: user.email, password: user.password };
     return this.jwt.sign(
-      payload,
+      { user },
       process.env.JWT_SECRET as string,
       { algorithm: 'HS256', expiresIn: '1d' },
     );
