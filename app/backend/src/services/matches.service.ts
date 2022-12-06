@@ -32,7 +32,7 @@ class MatchService {
     return matches3;
   }
 
-  public static async createMacthInProgressTrue(params: IMateches): Promise<IMateches> {
+  public static async createMacthInProgressTrue(params: IMateches) {
     const saveMatch = await Match.create({
       homeTeam: params.homeTeam,
       homeTeamGoals: params.homeTeamGoals,
@@ -40,8 +40,18 @@ class MatchService {
       awayTeamGoals: params.awayTeamGoals,
       inProgress: true,
     });
-    console.log(saveMatch);
+    // console.log(saveMatch);
     return saveMatch;
+  }
+
+  public static async updateMatchInProgress(id: IMateches) {
+    if (id) {
+      const matchInProgress = await Match.update(
+        { inProgress: false },
+        { where: { id } },
+      );
+      return matchInProgress;
+    }
   }
 }
 

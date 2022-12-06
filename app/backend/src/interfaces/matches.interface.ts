@@ -1,7 +1,7 @@
 import ITeams from './teams.interface';
 
 interface IMateches {
-  id: number,
+  id?: number,
   homeTeam: number,
   homeTeamGoals: number,
   awayTeam: number,
