@@ -14,6 +14,6 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
 
     next();
   } catch (err) {
-    return res.status(401).json({ message: 'Not authorized!' });
+    return res.status(401).json({ message: 'Token must be a valid token' });
   }
 }

@@ -40,7 +40,8 @@ class MatchService {
       awayTeamGoals: params.awayTeamGoals,
       inProgress: true,
     });
-    // console.log(saveMatch);
+
+    // if (!saveMatch) return false;
     return saveMatch;
   }
 

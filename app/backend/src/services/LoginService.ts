@@ -46,13 +46,10 @@ class LoginService {
   public async loginValidate(token: string): Promise<IUser | undefined> {
     const result = this.jwt
       .verify(token, process.env.JWT_SECRET as string) as unknown as Ijwt;
-    // console.log(result);
 
     const { id } = result.user;
-    // console.log({ iid: id });
 
     const user = await User.findByPk(id);
-    // console.log({ userr: user });
 
     if (user) {
       return user;
