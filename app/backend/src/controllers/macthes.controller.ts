@@ -20,7 +20,7 @@ class MatchController {
     const matchCreated = await MatchService.createMacthInProgressTrue(match);
     // console.log(matchCreated);
 
-    if (matchCreated === match.awayTeam) {
+    if (match.homeTeam === match.awayTeam) {
       return res.status(422)
         .json({ message: 'It is not possible to create a match with two equal teams' });
     }
@@ -37,6 +37,14 @@ class MatchController {
     const updateMatch = await MatchService.updateMatchInProgress(id as unknown as IMateches);
 
     if (updateMatch) return res.status(200).json({ message: 'Finished' });
+  };
+
+  public updateMatch = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { body } = req;
+
+    const matchUpdate = await MatchService.updateMatch(id as unknown as IMateches, body);
+    if (matchUpdate) return res.status(200).json({ message: 'Updated!' });
   };
 }
 

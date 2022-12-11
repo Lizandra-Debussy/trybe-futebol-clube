@@ -6,7 +6,7 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
     const { authorization: token } = req.headers;
 
     if (!token) {
-      return res.status(401).json({ message: 'Token not found!' });
+      return res.status(401).json({ message: 'Token must be a valid token' });
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'jwt_srcret');
 

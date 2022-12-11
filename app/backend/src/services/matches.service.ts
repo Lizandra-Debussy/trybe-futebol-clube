@@ -41,7 +41,6 @@ class MatchService {
       inProgress: true,
     });
 
-    // if (!saveMatch) return false;
     return saveMatch;
   }
 
@@ -53,6 +52,15 @@ class MatchService {
       );
       return matchInProgress;
     }
+  }
+
+  public static async updateMatch(id: IMateches, body: IMateches) {
+    const matchUpdate = await Match.update(
+      { homeTeamGoals: body.homeTeamGoals,
+        awayTeamGoals: body.awayTeamGoals },
+      { where: { id } },
+    );
+    return matchUpdate;
   }
 }
 
