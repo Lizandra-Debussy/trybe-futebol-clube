@@ -13,7 +13,6 @@ class MatchService {
     return matches;
   }
 
-  // `${inProgress}`
   public static async getMatchesInProgress(inProgress: string): Promise<IMateches[]> {
     if (inProgress === 'true') {
       const matches2 = await Match.findAll({
@@ -33,6 +32,14 @@ class MatchService {
   }
 
   public static async createMacthInProgressTrue(params: IMateches) {
+    const homeTeam = await Team.findOne({ where: { id: params.homeTeam } });
+
+    const awayTeam = await Team.findOne({ where: { id: params.awayTeam } });
+
+    if (!homeTeam || !awayTeam) {
+      return { type: 404, message: { message: 'There is no team with such id!' } };
+    }
+
     const saveMatch = await Match.create({
       homeTeam: params.homeTeam,
       homeTeamGoals: params.homeTeamGoals,
@@ -41,7 +48,7 @@ class MatchService {
       inProgress: true,
     });
 
-    return saveMatch;
+    return { type: 201, message: saveMatch };
   }
 
   public static async updateMatchInProgress(id: IMateches) {

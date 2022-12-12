@@ -18,18 +18,15 @@ class MatchController {
   public createMacthInProgressTrue = async (req: Request, res: Response) => {
     const match = req.body;
     const matchCreated = await MatchService.createMacthInProgressTrue(match);
-    // console.log(matchCreated);
 
     if (match.homeTeam === match.awayTeam) {
       return res.status(422)
         .json({ message: 'It is not possible to create a match with two equal teams' });
     }
 
-    if (!matchCreated) {
-      return res.status(422).json({ message: 'There is no team with such id!' });
+    if (matchCreated) {
+      return res.status(matchCreated.type).json(matchCreated.message);
     }
-
-    return res.status(201).json(matchCreated);
   };
 
   public updateMatchInProgress = async (req: Request, res: Response) => {
