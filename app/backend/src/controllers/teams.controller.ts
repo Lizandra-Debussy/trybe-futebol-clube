@@ -14,7 +14,6 @@ class TeamController {
 
     return res.status(200).json(teamById);
   };
-  // ex: onClick={() => setOrdenador(opcao.value as OpcoesOrdenador)}
 }
 
 export default TeamController;

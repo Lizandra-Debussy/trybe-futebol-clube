@@ -12,15 +12,9 @@ class LeaderboardUtils {
       const teamMatches = this.partidasDoTime(team, matches);
       const teamList = this.teamList(team, teamMatches, type);
       result.push(teamList);
-      // result.push(teamMatches);
     });
     return this.listSorter(result);
   }
-
-  // team = é o time no index do forEach;
-  // teams = são todos os times;
-  // teamMatches = são as partidas do time no index do forEach;
-  // matches = são todas as partidas de todos os times;
 
   // retorna as partidas do time de dentro do forEach
   private static partidasDoTime(team: Team, matches: Match[]) {
