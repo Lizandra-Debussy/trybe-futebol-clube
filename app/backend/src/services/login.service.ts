@@ -24,15 +24,6 @@ class LoginService {
         return token;
       }
     }
-
-    // if (!verificaSenha) {
-    //   throw new HttpException(401, 'Incorrect email or password');
-    // } else {
-    //   const { password: _, ...usuarioSemPassword } = usuario.dataValues;
-    //   const token = this.generateToken(usuarioSemPassword);
-
-    //   return token;
-    // }
   }
 
   private generateToken(user: IUser) {

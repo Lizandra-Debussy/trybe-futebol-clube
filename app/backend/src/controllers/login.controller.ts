@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import LoginService from '../services/LoginService';
+import LoginService from '../services/login.service';
 
 class LoginController {
   private loginService = new LoginService();
